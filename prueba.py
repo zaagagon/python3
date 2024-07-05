@@ -1,2 +1,6 @@
 #comentarios en python
-nombre = CodeExplorers
+#funcion suma
+def suma(a,b):{
+    return a+b
+}
+
