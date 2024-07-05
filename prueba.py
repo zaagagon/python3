@@ -1,6 +1,7 @@
 #comentarios en python
 #funcion suma
-def suma(a,b):{
-    return a+b
-}
+num =1
+num2 =7
+result = num + num2
+print(result)
 
