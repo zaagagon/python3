@@ -12,8 +12,8 @@ mediana = np.median(arreglo)
 
 # Calcular la moda
 moda = stats.mode(arreglo)
-moda_valor = moda.mode[0]
-frecuencia_moda = moda.count[0]
+moda_valor = moda.mode
+frecuencia_moda = moda.count
 
 # Imprimir resultados
 print("Media:", media)
