@@ -36,6 +36,9 @@ print(df_personas.describe())
 
 df_personas.to_csv("personas.csv", index=False)
 
+df_personas.to_excel("personas_exportado.xlsx", index=False)
+
+
 
 # Acceder a valores
 print("Nombre:", persona["nombre"])  # Peter Parker
