@@ -21,3 +21,5 @@ Si la rama local no tiene configurada una relación de seguimiento con una rama 
 2. Qué hace git push origin HEAD:
 Este comando fuerza a Git a empujar la rama actual (representada por HEAD) al repositorio remoto (origin) y la asocia manualmente con la rama remota del mismo nombre.
 No depende de que exista una configuración previa de upstream, por lo que funciona incluso si no has configurado la rama correctamente."""
+
+print("ready")
