@@ -8,3 +8,5 @@ for personajes in personajes:
 #prueba con lista personajes
 for personajes in personajes:
     print(personajes)
+    
+print("hola")
