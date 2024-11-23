@@ -6,3 +6,5 @@ for personajes in personajes:
     print(f"contenido lista : {personajes}")
 
 #dfdsfdffddsds
+for personajes in personajes:
+    print(personajes)
