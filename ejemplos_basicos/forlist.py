@@ -16,3 +16,7 @@ for numero in range(10):
 # Usando range para generar números del 1 al 10
 for numero in range(1, 11):
     print(numero)
+
+for numero in range(1, 11):
+    cuadrado = numero ** 2
+    print(f"El cuadrado de {numero} es {cuadrado}")
