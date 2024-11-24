@@ -8,3 +8,7 @@ print(nombre[1])
 #muestra indice valor de la lista
 for indice,elem in enumerate(nombres):
     print(indice,elem)
+    
+# Usando range para generar números del 0 al 9
+for numero in range(10):
+    print(numero)
