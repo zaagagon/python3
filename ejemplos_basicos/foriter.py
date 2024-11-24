@@ -5,4 +5,5 @@ for elem in lista:
 print
 #for con serie de numeros
 print("hola de prueba")
-  
+
+#crear lista de python

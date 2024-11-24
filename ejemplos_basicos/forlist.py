@@ -12,3 +12,7 @@ for indice,elem in enumerate(nombres):
 # Usando range para generar números del 0 al 9
 for numero in range(10):
     print(numero)
+
+# Usando range para generar números del 1 al 10
+for numero in range(1, 11):
+    print(numero)
