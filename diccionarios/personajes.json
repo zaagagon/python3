@@ -1,0 +1,31 @@
+{
+    "Trinity": {
+        "nombre": "Trinity",
+        "edad": 28,
+        "profesión": "Hacker",
+        "habilidades": [
+            "artes marciales",
+            "hackeo avanzado"
+        ]
+    },
+    "Hulk": {
+        "nombre": "Hulk",
+        "edad": 45,
+        "profesión": "Científico",
+        "habilidades": [
+            "superfuerza",
+            "resistencia extrema",
+            "curación rápida"
+        ]
+    },
+    "Wolverine": {
+        "nombre": "Wolverine",
+        "edad": 137,
+        "profesión": "Mutante",
+        "habilidades": [
+            "regeneración",
+            "garras de adamantium",
+            "sentidos agudos"
+        ]
+    }
+}

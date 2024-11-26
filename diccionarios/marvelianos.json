@@ -1,0 +1,11 @@
+{
+    "wolverine": {
+        "nickname": "wolverine",
+        "nombre": "logan",
+        "clase": "mutante",
+        "habilidades": [
+            "regeneracion",
+            "fuerza"
+        ]
+    }
+}

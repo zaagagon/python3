@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Marvelianos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1{
+            color:blue;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input, select {
+            padding: 5px;
+            margin: 5px;
+        }
+        .actions button {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gestión de Marvelianos</h1>
+
+    <h2>Agregar o Editar Personaje</h2>
+    <form id="characterForm">
+        <label for="nickname">Nickname:</label>
+        <input type="text" id="nickname" placeholder="Ej: Hulk" required>
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" placeholder="Ej: Bruce Banner" required>
+        <label for="class">Clase:</label>
+        <select id="class" required>
+            <option value="mutante">Mutante</option>
+            <option value="tecnológico">Tecnológico</option>
+            <option value="alien">Alien</option>
+            <option value="humano">Humano</option>
+        </select>
+        <label for="abilities">Habilidades (separadas por comas):</label>
+        <input type="text" id="abilities" placeholder="Ej: superfuerza, curación rápida" required>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <h2>Lista de Marvelianos</h2>
+    <table id="charactersTable">
+        <thead>
+            <tr>
+                <th>Nickname</th>
+                <th>Nombre</th>
+                <th>Clase</th>
+                <th>Habilidades</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        // Diccionario inicial de personajes
+        let marvelianos = {
+            "Hulk": {
+                "nickname": "Hulk",
+                "nombre": "Bruce Banner",
+                "clase": "Mutante",
+                "habilidades": ["superfuerza", "resistencia extrema", "curación rápida"]
+            },
+            "Wolverine": {
+                "nickname": "Wolverine",
+                "nombre": "Logan",
+                "clase": "Mutante",
+                "habilidades": ["regeneración", "garras de adamantium", "sentidos agudos"]
+            }
+        };
+
+        // Referencias a los elementos del DOM
+        const characterForm = document.getElementById('characterForm');
+        const charactersTableBody = document.querySelector('#charactersTable tbody');
+        const nicknameInput = document.getElementById('nickname');
+        const nameInput = document.getElementById('name');
+        const classInput = document.getElementById('class');
+        const abilitiesInput = document.getElementById('abilities');
+
+        // Función para renderizar la tabla
+        function renderTable() {
+            charactersTableBody.innerHTML = ''; // Limpiar tabla
+            for (const nickname in marvelianos) {
+                const character = marvelianos[nickname];
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${character.nickname}</td>
+                    <td>${character.nombre}</td>
+                    <td>${character.clase}</td>
+                    <td>${character.habilidades.join(', ')}</td>
+                    <td class="actions">
+                        <button onclick="editCharacter('${nickname}')">Editar</button>
+                        <button onclick="deleteCharacter('${nickname}')">Borrar</button>
+                    </td>
+                `;
+                charactersTableBody.appendChild(row);
+            }
+        }
+
+        // Función para agregar o editar un personaje
+        function addOrEditCharacter(event) {
+            event.preventDefault();
+            const nickname = nicknameInput.value.trim();
+            const name = nameInput.value.trim();
+            const charClass = classInput.value.trim();
+            const abilities = abilitiesInput.value.split(',').map(a => a.trim());
+
+            // Agregar o editar en el diccionario
+            marvelianos[nickname] = {
+                nickname,
+                nombre: name,
+                clase: charClass,
+                habilidades: abilities
+            };
+
+            characterForm.reset(); // Limpiar formulario
+            renderTable(); // Actualizar tabla
+        }
+
+        // Función para editar un personaje (llenar el formulario)
+        function editCharacter(nickname) {
+            const character = marvelianos[nickname];
+            nicknameInput.value = character.nickname;
+            nameInput.value = character.nombre;
+            classInput.value = character.clase;
+            abilitiesInput.value = character.habilidades.join(', ');
+        }
+
+        // Función para borrar un personaje
+        function deleteCharacter(nickname) {
+            delete marvelianos[nickname]; // Eliminar del diccionario
+            renderTable(); // Actualizar tabla
+        }
+
+        // Inicializar eventos
+        characterForm.addEventListener('submit', addOrEditCharacter);
+
+        // Renderizar tabla inicial
+        renderTable();
+    </script>
+</body>
+</html>
