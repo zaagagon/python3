@@ -1,0 +1,18 @@
+{
+    "nickname": "mujer maravilla",
+    "nombre_real": "brenda",
+    "clase": "SuperHumana",
+    "habilidades": [
+        "fuerza",
+        "me ama"
+    ],
+    "americana": {
+        "nickname": "americana",
+        "nombre": "landers",
+        "clase": "alienigena",
+        "habilidades": [
+            "comer",
+            "amarme"
+        ]
+    }
+}
