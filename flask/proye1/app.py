@@ -12,7 +12,7 @@ def index():
         with open('datos.json', 'w') as file:
             json.dump(datos, file)
         return jsonify({'mensaje': 'Datos guardados correctamente'})
-    return render_template('./form.html')
+    return render_template('./templates/form.html')
 
 if __name__ == '__main__':
     port=5009
