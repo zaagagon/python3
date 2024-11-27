@@ -1,11 +1,12 @@
 {
-    "wolverine": {
-        "nickname": "wolverine",
-        "nombre": "logan",
-        "clase": "mutante",
+    "Superman": {
+        "nickname": "Superman",
+        "nombre": "Julito",
+        "clase": "Alienigena",
         "habilidades": [
-            "regeneracion",
-            "fuerza"
+            "Vuela",
+            "Rayos X",
+            "Super Fuerza"
         ]
     }
 }
