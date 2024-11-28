@@ -6,5 +6,17 @@
     {
         "nombre": "erer",
         "edad": "3"
+    },
+    {
+        "nombre": "Camilo ",
+        "edad": "15"
+    },
+    {
+        "nombre": "David ",
+        "edad": "60"
+    },
+    {
+        "nombre": "Angela",
+        "edad": "25"
     }
 ]
