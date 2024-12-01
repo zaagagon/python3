@@ -78,4 +78,5 @@ def chatbot():
             print("Chatbot: Lo siento, no entiendo eso.")
 
 # Ejecutar el chatbot
+# Chatbot funcionando
 chatbot()
