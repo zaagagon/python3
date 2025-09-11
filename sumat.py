@@ -1,3 +1,4 @@
+#programa corriendo con anaconda
 import tkinter as tk
 
 def sumar():
