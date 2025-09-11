@@ -14,11 +14,11 @@ ventana = tk.Tk()
 ventana.title("Suma con Tkinter")
 
 # Entradas
-tk.Label(ventana, text="Número 1:").pack()
+tk.Label(ventana, text="Número 1: ").pack()
 entry1 = tk.Entry(ventana)
 entry1.pack()
 
-tk.Label(ventana, text="Número 2:").pack()
+tk.Label(ventana, text="Número 2: ").pack()
 entry2 = tk.Entry(ventana)
 entry2.pack()
 
