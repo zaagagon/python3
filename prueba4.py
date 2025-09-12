@@ -1,5 +1,5 @@
 #programa condicional
-number = int(input("ingre"))
+number = int(input("ingrese numero : "))
 if number >5:
     print("numero es mayor que 5")
 else:
