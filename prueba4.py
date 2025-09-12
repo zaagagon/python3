@@ -1,4 +1,6 @@
 #programa condicional
 number = int(input("ingre"))
-if 4 >5:
-    print("4 mayor que 5")
+if number >5:
+    print("numero es mayor que 5")
+else:
+    print("numero es menor que 5")
