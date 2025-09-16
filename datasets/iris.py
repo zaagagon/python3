@@ -5,3 +5,4 @@ iris=load_iris
 print(dir(iris))
 print("Scikit-learn:", sklearn.__version__)
 
+Revisar
