@@ -14,7 +14,7 @@ data = [
 df = pd.DataFrame(data)
 
 print(df.head(0))
-
+print(df.types)
 df.info()
 print("columa heroes")
 df.heroe
