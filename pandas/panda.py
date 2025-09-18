@@ -17,7 +17,7 @@ print(df.head(0))
 print(df.dtypes)
 df.info()
 print("columa heroes")
-df.heroe
+print(df.heroe)
 # 2) Nueva columna simple (índice de poder: promedio de fuerza e inteligencia)
 df["indice_poder"] = (df["fuerza"] + df["inteligencia"]) / 2
 
