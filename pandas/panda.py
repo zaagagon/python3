@@ -34,14 +34,14 @@ promedios_equipo = df.groupby("equipo")[["fuerza", "inteligencia", "indice_poder
 # 6) Búsqueda por patrón (héroes que contienen 'man', sin distinguir mayúsculas)
 contienen_man = df[df["heroe"].str.contains("man", case=False)]
 
-fuerzo70=df.loc[df["fuerza"] > 70, "heroe"].tolist()
+fuerza70=df.loc[df["fuerza"] > 70, "heroe"].tolist()
 print("DataFrame base:\n", df, "\n")
 print("Solo Avengers:\n", avengers, "\n")
 print("X-Men con fuerza >= 80:\n", xmen_fuertes, "\n")
 print("Top 3 por fuerza:\n", top_fuerza, "\n")
 print("Promedios por equipo:\n", promedios_equipo, "\n")
 print("Héroes que contienen 'man':\n", contienen_man, "\n")
-print("heroes con fuerz mayor a 70:\n"),fuerza70,"\n")
+print("heroes con fuerz mayor a 70:\n",fuerza70,"\n")
 
 # 7) Guardar a CSV (opcional)
 # df.to_csv("marvel_heroes.csv", index=False)
