@@ -43,3 +43,5 @@ print("Héroes que contienen 'man':\n", contienen_man, "\n")
 
 # 7) Guardar a CSV (opcional)
 # df.to_csv("marvel_heroes.csv", index=False)
+
+df = pd.DataFrame(data)
