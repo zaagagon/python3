@@ -14,6 +14,7 @@ data = [
 df = pd.DataFrame(data)
 
 print(df.head(0))
+df.info()
 # 2) Nueva columna simple (índice de poder: promedio de fuerza e inteligencia)
 df["indice_poder"] = (df["fuerza"] + df["inteligencia"]) / 2
 
