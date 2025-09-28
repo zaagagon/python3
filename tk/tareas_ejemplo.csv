@@ -1,0 +1,6 @@
+id,descripcion,fecha_limite,completada,categoria,prioridad
+1,Preparar informe mensual,2025-10-05,0,Trabajo,2
+2,Comprar flores para vitrina,2025-10-03,0,Florería,3
+3,Llamar a proveedor principal,2025-10-02,1,Proveedores,1
+4,Pagar servicios públicos,2025-10-10,0,Finanzas,2
+5,Revisar inventario rosas,2025-10-04,0,Inventario,2
