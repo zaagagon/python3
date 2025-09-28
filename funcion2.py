@@ -1,7 +1,7 @@
 
-function sumar(a,b){
-    a+b
-}
+def sumar(a,b): 
+    return a+b
+
 
 resultado = sumar(4,5)
-print(repr)
+print(resultado)
