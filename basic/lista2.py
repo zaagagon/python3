@@ -1,4 +1,6 @@
 heroes = [ "iron", "thor"]
 
-print("lista :", heroes)
 print(heroes[1])
+
+heroes.append("hulk")
+print("lista :", heroes)
