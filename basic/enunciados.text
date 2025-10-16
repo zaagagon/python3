@@ -1,0 +1,8 @@
+Crea una lista llamada numeros que contenga los valores 10, 20, 30, 40 y 50. A continuación, realiza las siguientes operaciones:
+
+Añade el número 60 al final de la lista
+Inserta el número 15 entre el 10 y el 20
+Elimina el número 30 de la lista
+Calcula la suma de todos los números en la lista y guárdala en una variable llamada suma
+Calcula el promedio de los números en la lista y guárdalo en una variable llamada promedio
+Al final, imprime la lista resultante, la suma y el promedio.
