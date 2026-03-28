@@ -1,0 +1,161 @@
+
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Reporte de análisis TLS</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 24px;
+                color: #222;
+                background: #f7f9fc;
+            }
+            h1, h2 {
+                margin-bottom: 10px;
+            }
+            .intro {
+                background: white;
+                border-radius: 10px;
+                padding: 16px;
+                margin-bottom: 20px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            }
+            .summary-grid {
+                display: grid;
+                grid-template-columns: repeat(5, minmax(120px, 1fr));
+                gap: 12px;
+                margin: 16px 0 24px 0;
+            }
+            .card {
+                background: white;
+                padding: 14px;
+                border-radius: 10px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                text-align: center;
+            }
+            .card .value {
+                font-size: 1.6rem;
+                font-weight: bold;
+                margin-top: 6px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                background: white;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            }
+            th, td {
+                border: 1px solid #dcdcdc;
+                padding: 12px;
+                vertical-align: top;
+                text-align: left;
+            }
+            th {
+                background: #e9eef5;
+            }
+            ul {
+                margin: 0;
+                padding-left: 20px;
+            }
+            .risk-low {
+                background: #d4edda;
+            }
+            .risk-medium {
+                background: #fff3cd;
+            }
+            .risk-high {
+                background: #ffe0b2;
+            }
+            .risk-critical {
+                background: #f8d7da;
+            }
+            .footer {
+                margin-top: 20px;
+                font-size: 0.95rem;
+                color: #555;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="intro">
+            <h1>Reporte de análisis TLS</h1>
+            <p>
+                Este reporte evalúa la configuración TLS de uno o varios servicios web,
+                identifica hallazgos de seguridad y traduce el análisis técnico en
+                recomendaciones accionables.
+            </p>
+        </div>
+
+        <h2>Resumen general</h2>
+        <div class="summary-grid">
+            <div class="card"><div>Total</div><div class="value">3</div></div>
+            <div class="card"><div>LOW</div><div class="value">3</div></div>
+            <div class="card"><div>MEDIUM</div><div class="value">0</div></div>
+            <div class="card"><div>HIGH</div><div class="value">0</div></div>
+            <div class="card"><div>CRITICAL</div><div class="value">0</div></div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Servidor</th>
+                    <th>Versiones TLS</th>
+                    <th>Hallazgos</th>
+                    <th>Riesgo</th>
+                    <th>Resumen ejecutivo</th>
+                    <th>Recomendaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr>
+            <td>
+                <strong>google.com</strong><br>
+                <small>google.com:443</small><br>
+                <small>2026-03-28T14:51:33.229223+00:00</small>
+            </td>
+            <td>TLSv1: DISABLED<br>TLSv1.1: DISABLED<br>TLSv1.2: ENABLED<br>TLSv1.3: ENABLED</td>
+            <td><ul><li>La verificación de versiones heredadas depende del soporte criptográfico del cliente local: TLSv1, TLSv1.1.</li></ul></td>
+            <td class="risk-low"><strong>LOW</strong></td>
+            <td>Configuración TLS saludable.</td>
+            <td><ul><li>Validar TLS 1.0/1.1 adicionalmente con nmap, sslscan o testssl.sh.</li></ul></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>github.com</strong><br>
+                <small>github.com:443</small><br>
+                <small>2026-03-28T14:51:35.609632+00:00</small>
+            </td>
+            <td>TLSv1: DISABLED<br>TLSv1.1: DISABLED<br>TLSv1.2: ENABLED<br>TLSv1.3: ENABLED</td>
+            <td><ul><li>La verificación de versiones heredadas depende del soporte criptográfico del cliente local: TLSv1, TLSv1.1.</li></ul></td>
+            <td class="risk-low"><strong>LOW</strong></td>
+            <td>Configuración TLS saludable.</td>
+            <td><ul><li>Validar TLS 1.0/1.1 adicionalmente con nmap, sslscan o testssl.sh.</li></ul></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>cloudfare.com</strong><br>
+                <small>cloudfare.com:443</small><br>
+                <small>2026-03-28T14:51:37.379142+00:00</small>
+            </td>
+            <td>TLSv1: DISABLED<br>TLSv1.1: DISABLED<br>TLSv1.2: ENABLED<br>TLSv1.3: ENABLED</td>
+            <td><ul><li>La verificación de versiones heredadas depende del soporte criptográfico del cliente local: TLSv1, TLSv1.1.</li></ul></td>
+            <td class="risk-low"><strong>LOW</strong></td>
+            <td>Configuración TLS saludable.</td>
+            <td><ul><li>Validar TLS 1.0/1.1 adicionalmente con nmap, sslscan o testssl.sh.</li></ul></td>
+        </tr>
+        
+            </tbody>
+        </table>
+
+        <div class="footer">
+            Nota: la validación de versiones heredadas puede depender del soporte criptográfico
+            del cliente local. Para mayor precisión, se recomienda contrastar con nmap, sslscan
+            o testssl.sh.
+        </div>
+    </body>
+    </html>
+    

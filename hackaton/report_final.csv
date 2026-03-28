@@ -1,0 +1,4 @@
+target,host,port,scan_time,risk_level,score,summary,findings,recommendations,nmap_summary
+google.com,google.com,443,2026-03-28T15:03:36.148503+00:00,LOW,5,Configuración TLS saludable.,"La verificación de versiones heredadas depende del soporte criptográfico del cliente local: TLSv1, TLSv1.1.","Validar TLS 1.0/1.1 adicionalmente con nmap, sslscan o testssl.sh.",
+github.com,github.com,443,2026-03-28T15:03:36.904238+00:00,LOW,5,Configuración TLS saludable.,"La verificación de versiones heredadas depende del soporte criptográfico del cliente local: TLSv1, TLSv1.1.","Validar TLS 1.0/1.1 adicionalmente con nmap, sslscan o testssl.sh.",
+cloudfare.com,cloudfare.com,443,2026-03-28T15:03:41.810174+00:00,LOW,5,Configuración TLS saludable.,"La verificación de versiones heredadas depende del soporte criptográfico del cliente local: TLSv1, TLSv1.1.","Validar TLS 1.0/1.1 adicionalmente con nmap, sslscan o testssl.sh.",

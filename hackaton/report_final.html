@@ -1,0 +1,267 @@
+
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Reporte de análisis TLS</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 24px;
+                color: #e8eefc;
+                background: #0b1020;
+            }
+            h1, h2 {
+                margin-bottom: 10px;
+            }
+            .intro, .card, .overall-banner {
+                background: #121a2b;
+                border-radius: 12px;
+                padding: 16px;
+                margin-bottom: 18px;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            }
+            .summary-grid {
+                display: grid;
+                grid-template-columns: repeat(5, minmax(120px, 1fr));
+                gap: 12px;
+                margin: 16px 0 24px 0;
+            }
+            .card {
+                text-align: center;
+            }
+            .value {
+                font-size: 1.8rem;
+                font-weight: bold;
+                margin-top: 6px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                background: #111827;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            }
+            th, td {
+                border: 1px solid #2b3548;
+                padding: 12px;
+                vertical-align: top;
+                text-align: left;
+            }
+            th {
+                background: #1f2937;
+            }
+            ul {
+                margin: 0;
+                padding-left: 20px;
+            }
+            .risk-low {
+                background: #1d4d2a55;
+            }
+            .risk-medium {
+                background: #8a6d1f55;
+            }
+            .risk-high {
+                background: #914f1b66;
+            }
+            .risk-critical {
+                background: #7f1d1d88;
+            }
+            .badge {
+                display: inline-block;
+                padding: 6px 10px;
+                border-radius: 999px;
+                margin: 3px 4px 3px 0;
+                font-size: 0.92rem;
+                font-weight: bold;
+            }
+            .badge-good {
+                background: #14532d;
+                color: #dcfce7;
+            }
+            .badge-bad {
+                background: #7f1d1d;
+                color: #fee2e2;
+            }
+            .badge-neutral {
+                background: #374151;
+                color: #e5e7eb;
+            }
+            .overall-safe {
+                border-left: 8px solid #22c55e;
+            }
+            .overall-medium {
+                border-left: 8px solid #eab308;
+            }
+            .overall-high {
+                border-left: 8px solid #f97316;
+            }
+            .overall-critical {
+                border-left: 8px solid #ef4444;
+            }
+            .chart-box {
+                background: #121a2b;
+                border-radius: 12px;
+                padding: 16px;
+                margin: 0 0 22px 0;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            }
+            .chart-row {
+                display: flex;
+                align-items: center;
+                margin: 10px 0;
+                gap: 12px;
+            }
+            .chart-label {
+                width: 90px;
+                font-weight: bold;
+            }
+            .chart-bar-wrap {
+                flex: 1;
+                background: #1f2937;
+                border-radius: 999px;
+                overflow: hidden;
+                min-height: 28px;
+            }
+            .chart-bar {
+                min-height: 28px;
+                line-height: 28px;
+                padding-left: 10px;
+                font-weight: bold;
+                color: white;
+            }
+            .nmap-box {
+                margin-top: 10px;
+                padding: 10px;
+                border-radius: 8px;
+                background: #1f2937;
+                color: #d1d5db;
+            }
+            .footer {
+                margin-top: 18px;
+                font-size: 0.95rem;
+                color: #9fb0d1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="intro">
+            <h1>Reporte de análisis TLS</h1>
+            <p>
+                Este reporte evalúa la configuración TLS de uno o varios servicios web,
+                identifica hallazgos de seguridad y traduce el análisis técnico en
+                recomendaciones accionables.
+            </p>
+        </div>
+
+        <div class="overall-banner overall-safe">
+            <strong>Estado general: SEGURO</strong><br>
+            <span>Resumen visual de exposición para la muestra analizada.</span>
+        </div>
+
+        <h2>Resumen general</h2>
+        <div class="summary-grid">
+            <div class="card"><div>Total</div><div class="value">3</div></div>
+            <div class="card"><div>LOW</div><div class="value">3</div></div>
+            <div class="card"><div>MEDIUM</div><div class="value">0</div></div>
+            <div class="card"><div>HIGH</div><div class="value">0</div></div>
+            <div class="card"><div>CRITICAL</div><div class="value">0</div></div>
+        </div>
+
+        <div class="chart-box">
+            <h2>Distribución de riesgo</h2>
+            
+        <div class="chart-row">
+            <div class="chart-label">LOW</div>
+            <div class="chart-bar-wrap">
+                <div class="chart-bar risk-low" style="width:100%;">3</div>
+            </div>
+        </div>
+        
+
+        <div class="chart-row">
+            <div class="chart-label">MEDIUM</div>
+            <div class="chart-bar-wrap">
+                <div class="chart-bar risk-medium" style="width:0%;">0</div>
+            </div>
+        </div>
+        
+
+        <div class="chart-row">
+            <div class="chart-label">HIGH</div>
+            <div class="chart-bar-wrap">
+                <div class="chart-bar risk-high" style="width:0%;">0</div>
+            </div>
+        </div>
+        
+
+        <div class="chart-row">
+            <div class="chart-label">CRITICAL</div>
+            <div class="chart-bar-wrap">
+                <div class="chart-bar risk-critical" style="width:0%;">0</div>
+            </div>
+        </div>
+        
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Servidor</th>
+                    <th>Versiones TLS</th>
+                    <th>Hallazgos</th>
+                    <th>Riesgo</th>
+                    <th>Resumen ejecutivo</th>
+                    <th>Recomendaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr>
+            <td>
+                <strong>google.com</strong><br>
+                <small>google.com:443</small><br>
+                <small>2026-03-28T15:03:36.148503+00:00</small>
+            </td>
+            <td><span class="badge badge-neutral">TLSv1: DISABLED</span><br><span class="badge badge-neutral">TLSv1.1: DISABLED</span><br><span class="badge badge-good">TLSv1.2: ENABLED</span><br><span class="badge badge-good">TLSv1.3: ENABLED</span></td>
+            <td><ul><li>La verificación de versiones heredadas depende del soporte criptográfico del cliente local: TLSv1, TLSv1.1.</li></ul></td>
+            <td class="risk-low"><strong>LOW</strong></td>
+            <td>Configuración TLS saludable.</td>
+            <td><ul><li>Validar TLS 1.0/1.1 adicionalmente con nmap, sslscan o testssl.sh.</li></ul></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>github.com</strong><br>
+                <small>github.com:443</small><br>
+                <small>2026-03-28T15:03:36.904238+00:00</small>
+            </td>
+            <td><span class="badge badge-neutral">TLSv1: DISABLED</span><br><span class="badge badge-neutral">TLSv1.1: DISABLED</span><br><span class="badge badge-good">TLSv1.2: ENABLED</span><br><span class="badge badge-good">TLSv1.3: ENABLED</span></td>
+            <td><ul><li>La verificación de versiones heredadas depende del soporte criptográfico del cliente local: TLSv1, TLSv1.1.</li></ul></td>
+            <td class="risk-low"><strong>LOW</strong></td>
+            <td>Configuración TLS saludable.</td>
+            <td><ul><li>Validar TLS 1.0/1.1 adicionalmente con nmap, sslscan o testssl.sh.</li></ul></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <strong>cloudfare.com</strong><br>
+                <small>cloudfare.com:443</small><br>
+                <small>2026-03-28T15:03:41.810174+00:00</small>
+            </td>
+            <td><span class="badge badge-neutral">TLSv1: DISABLED</span><br><span class="badge badge-neutral">TLSv1.1: DISABLED</span><br><span class="badge badge-good">TLSv1.2: ENABLED</span><br><span class="badge badge-good">TLSv1.3: ENABLED</span></td>
+            <td><ul><li>La verificación de versiones heredadas depende del soporte criptográfico del cliente local: TLSv1, TLSv1.1.</li></ul></td>
+            <td class="risk-low"><strong>LOW</strong></td>
+            <td>Configuración TLS saludable.</td>
+            <td><ul><li>Validar TLS 1.0/1.1 adicionalmente con nmap, sslscan o testssl.sh.</li></ul></td>
+        </tr>
+        
+            </tbody>
+        </table>
+
+        <div class="footer">
+            Nota: la validación de versiones heredadas puede depender del soporte criptográfico del cliente local.
+            Para mayor precisión, se recomienda contrastar con nmap, sslscan o testssl.sh.
+        </div>
+    </body>
+    </html>
+    

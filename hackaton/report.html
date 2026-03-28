@@ -1,0 +1,51 @@
+
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Reporte TLS</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            table { width: 100%; border-collapse: collapse; }
+            th, td { border: 1px solid #ccc; padding: 10px; vertical-align: top; }
+            th { background: #f2f2f2; }
+        </style>
+    </head>
+    <body>
+        <h1>Reporte de análisis TLS</h1>
+        <table>
+            <tr>
+                <th>Servidor</th>
+                <th>Versiones TLS</th>
+                <th>Hallazgos</th>
+                <th>Riesgo</th>
+                <th>Recomendaciones</th>
+            </tr>
+            
+        <tr>
+            <td>google.com</td>
+            <td>TLSv1: DISABLED<br>TLSv1.1: DISABLED<br>TLSv1.2: ENABLED<br>TLSv1.3: ENABLED</td>
+            <td>Sin hallazgos</td>
+            <td>LOW</td>
+            <td>Mantener monitoreo periódico y validar consistencia entre ambientes</td>
+        </tr>
+        
+        <tr>
+            <td>github.com</td>
+            <td>TLSv1: DISABLED<br>TLSv1.1: DISABLED<br>TLSv1.2: ENABLED<br>TLSv1.3: ENABLED</td>
+            <td>Sin hallazgos</td>
+            <td>LOW</td>
+            <td>Mantener monitoreo periódico y validar consistencia entre ambientes</td>
+        </tr>
+        
+        <tr>
+            <td>cloudfare.com</td>
+            <td>TLSv1: DISABLED<br>TLSv1.1: DISABLED<br>TLSv1.2: ENABLED<br>TLSv1.3: ENABLED</td>
+            <td>Sin hallazgos</td>
+            <td>LOW</td>
+            <td>Mantener monitoreo periódico y validar consistencia entre ambientes</td>
+        </tr>
+        
+        </table>
+    </body>
+    </html>
+    

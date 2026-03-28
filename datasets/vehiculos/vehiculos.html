@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>VE Dataset Viewer — Neo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- SheetJS (XLSX parser in-browser) -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <!-- Chart.js for charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    body{font-family:system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";padding:24px;max-width:1200px;margin:auto;}
+    h1{margin:0 0 8px}
+    .card{border:1px solid #e5e7eb; border-radius:16px; padding:16px; margin:16px 0; box-shadow:0 1px 2px rgba(0,0,0,.04)}
+    table{border-collapse:collapse;width:100%;font-size:14px}
+    th,td{border:1px solid #e5e7eb;padding:6px 8px;text-align:left}
+    th{background:#f8fafc}
+    .grid{display:grid;gap:16px}
+    @media(min-width:900px){.grid-2{grid-template-columns:1fr 1fr}}
+    .muted{color:#6b7280}
+    .badge{display:inline-block;background:#eef2ff;color:#3730a3;padding:2px 8px;border-radius:999px;font-size:12px}
+    .footer{margin-top:24px;font-size:12px;color:#6b7280}
+  </style>
+</head>
+<body>
+  <h1>VE Dataset Viewer <span class="badge">HTML-only</span></h1>
+  <p class="muted">Cargue su archivo <strong>Excel (.xlsx)</strong>. Se mostrará una vista previa y resúmenes por <em>DEPARTAMENTO</em>, <em>ANIO_REGISTRO</em> y <em>CLASE</em>.</p>
+
+  <div class="card">
+    <input id="file" type="file" accept=".xlsx,.xls" />
+    <span id="filename" class="muted" style="margin-left:8px;"></span>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>Vista previa (primeras 50 filas)</h3>
+      <div id="preview"></div>
+    </div>
+    <div class="card">
+      <h3>Columnas detectadas</h3>
+      <pre id="cols"></pre>
+      <div id="meta" class="muted"></div>
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>Top Departamentos</h3>
+      <canvas id="chartDept"></canvas>
+      <div id="tableDept"></div>
+    </div>
+    <div class="card">
+      <h3>Tendencia por Año</h3>
+      <canvas id="chartYear"></canvas>
+      <div id="tableYear"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Distribución por CLASE</h3>
+    <canvas id="chartClass"></canvas>
+    <div id="tableClass"></div>
+  </div>
+
+  <div class="footer">
+    <p>Tip: si tu dataset trae <code>CIUDAD</code> o <code>MUNICIPIO</code>, podrás cambiar el agrupamiento fácilmente.</p>
+  </div>
+
+<script>
+const $ = (q)=>document.querySelector(q);
+
+function normalizeHeaders(headers){
+  // limpia espacios y mayúsculas/minúsculas
+  return headers.map(h => String(h || '').trim().replace(/\s+/g,' ').replace(/\s+$/,'').toUpperCase());
+}
+
+function toTable(rows, maxRows=50){
+  if(!rows.length) return '<p class="muted">Sin filas.</p>';
+  const headers = Object.keys(rows[0]);
+  let html = '<table><thead><tr>';
+  headers.forEach(h=> html += `<th>${h}</th>`);
+  html += '</tr></thead><tbody>';
+  rows.slice(0, maxRows).forEach(r=>{
+    html += '<tr>';
+    headers.forEach(h=> html += `<td>${r[h]===undefined?'':r[h]}</td>`);
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  return html;
+}
+
+function sumBy(rows, key, qtyKey='CANTIDAD'){
+  const out = {};
+  for(const r of rows){
+    const k = (r[key] ?? 'N/D');
+    const v = Number(r[qtyKey] ?? 1);
+    out[k] = (out[k]||0) + (Number.isFinite(v)?v:0);
+  }
+  // to array
+  return Object.entries(out).map(([k,v])=>({[key]:k, TOTAL:v}));
+}
+
+function sortDesc(arr, by='TOTAL'){
+  return [...arr].sort((a,b)=>(b[by]??0)-(a[by]??0));
+}
+
+function renderTable(containerId, data){
+  if(!data?.length){ $(containerId).innerHTML = '<p class="muted">Sin datos.</p>'; return; }
+  const headers = Object.keys(data[0]);
+  let html = '<table><thead><tr>';
+  headers.forEach(h=> html += `<th>${h}</th>`);
+  html += '</tr></thead><tbody>';
+  data.forEach(row=>{
+    html += '<tr>';
+    headers.forEach(h=> html += `<td>${row[h]}</td>`);
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  $(containerId).innerHTML = html;
+}
+
+function renderBarChart(canvasId, labels, values, title){
+  const ctx = $(canvasId);
+  new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets: [{ label: title, data: values }]},
+    options: { responsive: true, scales: { y: { beginAtZero: true } } }
+  });
+}
+
+$('#file').addEventListener('change', async (ev)=>{
+  const file = ev.target.files[0];
+  if(!file) return;
+  $('#filename').textContent = file.name;
+
+  const data = await file.arrayBuffer();
+  const wb = XLSX.read(data, {type:'array'});
+  const sheetName = wb.SheetNames[0];
+  const ws = wb.Sheets[sheetName];
+  // JSON "raw": true para no formatear números/fechas
+  let rows = XLSX.utils.sheet_to_json(ws, {defval: null, raw: true});
+
+  if(rows.length===0){
+    $('#preview').innerHTML = '<p class="muted">La hoja está vacía.</p>';
+    return;
+  }
+
+  // Normalizar headers: mapeo a mayúsculas y sin espacios extra
+  const origHeaders = Object.keys(rows[0]);
+  const normHeaders = normalizeHeaders(origHeaders);
+
+  // Re-estructurar filas con headers normalizados
+  rows = rows.map(r=>{
+    const o = {};
+    origHeaders.forEach((h, i)=>{
+      o[normHeaders[i]] = r[h];
+    });
+    return o;
+  });
+
+  // Asegurar CANTIDAD (si no existe, tomar 1)
+  if(!normHeaders.includes('CANTIDAD')){
+    rows.forEach(r=> r.CANTIDAD = 1);
+  }else{
+    rows.forEach(r=> r.CANTIDAD = Number(r.CANTIDAD ?? 0) || 0);
+  }
+
+  // Vista previa
+  $('#preview').innerHTML = toTable(rows, 50);
+  $('#cols').textContent = JSON.stringify(Object.keys(rows[0]), null, 2);
+  $('#meta').textContent = `Filas: ${rows.length}`;
+
+  // ---- Agrupaciones ----
+  // 1) Departamento
+  if(rows[0].hasOwnProperty('DEPARTAMENTO')){
+    const dept = sortDesc(sumBy(rows, 'DEPARTAMENTO'));
+    renderTable('#tableDept', dept.slice(0, 50));
+    renderBarChart('#chartDept',
+      dept.slice(0,15).map(d=>d.DEPARTAMENTO),
+      dept.slice(0,15).map(d=>d.TOTAL),
+      'Total por Departamento');
+  }else{
+    $('#tableDept').innerHTML = '<p class="muted">No se encontró columna DEPARTAMENTO.</p>';
+  }
+
+  // 2) Año
+  if(rows[0].hasOwnProperty('ANIO_REGISTRO')){
+    const year = sortDesc(sumBy(rows, 'ANIO_REGISTRO'));
+    renderTable('#tableYear', year);
+    renderBarChart('#chartYear',
+      year.map(d=>d.ANIO_REGISTRO),
+      year.map(d=>d.TOTAL),
+      'Total por Año');
+  }else{
+    $('#tableYear').innerHTML = '<p class="muted">No se encontró columna ANIO_REGISTRO.</p>';
+  }
+
+  // 3) Clase
+  if(rows[0].hasOwnProperty('CLASE')){
+    const klass = sortDesc(sumBy(rows, 'CLASE'));
+    renderTable('#tableClass', klass);
+    renderBarChart('#chartClass',
+      klass.map(d=>d.CLASE),
+      klass.map(d=>d.TOTAL),
+      'Total por CLASE');
+  }else{
+    $('#tableClass').innerHTML = '<p class="muted">No se encontró columna CLASE.</p>';
+  }
+});
+</script>
+</body>
+</html>

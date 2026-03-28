@@ -1,0 +1,152 @@
+[
+  {
+    "target": "google.com",
+    "host": "google.com",
+    "port": 443,
+    "scan_time": "2026-03-28T15:03:36.148503+00:00",
+    "tls_versions": {
+      "TLSv1": {
+        "supported": false,
+        "negotiated": null,
+        "cipher": null,
+        "cert_present": null,
+        "status": "CLIENT_NOT_SUPPORTED",
+        "error": "El cliente local no dispone de cifrados para esta versión TLS."
+      },
+      "TLSv1.1": {
+        "supported": false,
+        "negotiated": null,
+        "cipher": null,
+        "cert_present": null,
+        "status": "CLIENT_NOT_SUPPORTED",
+        "error": "El cliente local no dispone de cifrados para esta versión TLS."
+      },
+      "TLSv1.2": {
+        "supported": true,
+        "negotiated": "TLSv1.2",
+        "cipher": "ECDHE-ECDSA-AES128-GCM-SHA256",
+        "cert_present": true,
+        "status": "SUPPORTED",
+        "error": null
+      },
+      "TLSv1.3": {
+        "supported": true,
+        "negotiated": "TLSv1.3",
+        "cipher": "TLS_AES_256_GCM_SHA384",
+        "cert_present": true,
+        "status": "SUPPORTED",
+        "error": null
+      }
+    },
+    "findings": [
+      "La verificación de versiones heredadas depende del soporte criptográfico del cliente local: TLSv1, TLSv1.1."
+    ],
+    "risk_level": "LOW",
+    "score": 5,
+    "recommendations": [
+      "Validar TLS 1.0/1.1 adicionalmente con nmap, sslscan o testssl.sh."
+    ],
+    "summary": "Configuración TLS saludable.",
+    "nmap_summary": null
+  },
+  {
+    "target": "github.com",
+    "host": "github.com",
+    "port": 443,
+    "scan_time": "2026-03-28T15:03:36.904238+00:00",
+    "tls_versions": {
+      "TLSv1": {
+        "supported": false,
+        "negotiated": null,
+        "cipher": null,
+        "cert_present": null,
+        "status": "CLIENT_NOT_SUPPORTED",
+        "error": "El cliente local no dispone de cifrados para esta versión TLS."
+      },
+      "TLSv1.1": {
+        "supported": false,
+        "negotiated": null,
+        "cipher": null,
+        "cert_present": null,
+        "status": "CLIENT_NOT_SUPPORTED",
+        "error": "El cliente local no dispone de cifrados para esta versión TLS."
+      },
+      "TLSv1.2": {
+        "supported": true,
+        "negotiated": "TLSv1.2",
+        "cipher": "ECDHE-ECDSA-AES128-GCM-SHA256",
+        "cert_present": true,
+        "status": "SUPPORTED",
+        "error": null
+      },
+      "TLSv1.3": {
+        "supported": true,
+        "negotiated": "TLSv1.3",
+        "cipher": "TLS_AES_128_GCM_SHA256",
+        "cert_present": true,
+        "status": "SUPPORTED",
+        "error": null
+      }
+    },
+    "findings": [
+      "La verificación de versiones heredadas depende del soporte criptográfico del cliente local: TLSv1, TLSv1.1."
+    ],
+    "risk_level": "LOW",
+    "score": 5,
+    "recommendations": [
+      "Validar TLS 1.0/1.1 adicionalmente con nmap, sslscan o testssl.sh."
+    ],
+    "summary": "Configuración TLS saludable.",
+    "nmap_summary": null
+  },
+  {
+    "target": "cloudfare.com",
+    "host": "cloudfare.com",
+    "port": 443,
+    "scan_time": "2026-03-28T15:03:41.810174+00:00",
+    "tls_versions": {
+      "TLSv1": {
+        "supported": false,
+        "negotiated": null,
+        "cipher": null,
+        "cert_present": null,
+        "status": "CLIENT_NOT_SUPPORTED",
+        "error": "El cliente local no dispone de cifrados para esta versión TLS."
+      },
+      "TLSv1.1": {
+        "supported": false,
+        "negotiated": null,
+        "cipher": null,
+        "cert_present": null,
+        "status": "CLIENT_NOT_SUPPORTED",
+        "error": "El cliente local no dispone de cifrados para esta versión TLS."
+      },
+      "TLSv1.2": {
+        "supported": true,
+        "negotiated": "TLSv1.2",
+        "cipher": "ECDHE-ECDSA-AES128-GCM-SHA256",
+        "cert_present": true,
+        "status": "SUPPORTED",
+        "error": null
+      },
+      "TLSv1.3": {
+        "supported": true,
+        "negotiated": "TLSv1.3",
+        "cipher": "TLS_AES_256_GCM_SHA384",
+        "cert_present": true,
+        "status": "SUPPORTED",
+        "error": null
+      }
+    },
+    "findings": [
+      "La verificación de versiones heredadas depende del soporte criptográfico del cliente local: TLSv1, TLSv1.1."
+    ],
+    "risk_level": "LOW",
+    "score": 5,
+    "recommendations": [
+      "Validar TLS 1.0/1.1 adicionalmente con nmap, sslscan o testssl.sh."
+    ],
+    "summary": "Configuración TLS saludable.",
+    "nmap_summary": null
+  }
+]
